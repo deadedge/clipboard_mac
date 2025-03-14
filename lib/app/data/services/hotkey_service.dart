@@ -20,9 +20,13 @@ class HotkeyService {
         if (isVisible) {
           await _windowService.window.hide();
         } else {
-          // Position the window at the mouse cursor
-         // await MousePositionService.positionWindowAtMouseCursor();
-          
+          final Map<String, double> mousePosition =
+              await MousePositionService.getMousePosition();
+
+          final double x = mousePosition["x"] as double;
+          final double y = mousePosition["y"] as double;
+
+          await _windowService.window.setPosition(Offset(x, y));
           // Then show and focus the window
           await _windowService.window.show();
           await _windowService.window.focus();

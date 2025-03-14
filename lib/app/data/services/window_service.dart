@@ -14,7 +14,8 @@ class WindowService with WindowListener {
       size: Size(400, 500),
       minimumSize: Size(300, 300),
       title: 'Fast Clipboard',
-      center: true,
+      center: false,
+      
     );
     await windowManager.waitUntilReadyToShow(windowOptions, () async {
       await windowManager.setAsFrameless();
@@ -26,6 +27,7 @@ class WindowService with WindowListener {
       await windowManager.setSkipTaskbar(true);
       await windowManager.setPreventClose(true);
       await windowManager.setVisibleOnAllWorkspaces(true);
+     
     });
   }
 }
