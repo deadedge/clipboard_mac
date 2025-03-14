@@ -21,7 +21,6 @@ class _AppWidgetState extends State<AppWidget> {
       title: "Fast Clipboard",
       home: ClipboardView(
         clipboardBarViewModel: context.read<ClipboardBarViewModel>(),
-        systemTrayService: context.read<SystemTrayService>(),
         windowService: context.read<WindowService>(),
         hotKeyService: context.read<HotkeyService>(),
       ),

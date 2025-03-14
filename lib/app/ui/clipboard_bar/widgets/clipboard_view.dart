@@ -1,24 +1,20 @@
 import 'package:clipboard_mac/app/data/services/hotkey_service.dart';
-import 'package:clipboard_mac/app/data/services/system_tray_service.dart';
 import 'package:clipboard_mac/app/data/services/window_service.dart';
 import 'package:clipboard_mac/app/domain/models/clipboard_item_model.dart';
 import 'package:clipboard_mac/app/ui/clipboard_bar/view_model/clipboard_bar_view_model.dart';
+import 'package:clipboard_mac/app/ui/clipboard_bar/widgets/clipboard_item.dart';
 import 'package:flutter/material.dart';
-import 'dart:typed_data';
 
 class ClipboardView extends StatefulWidget {
   final ClipboardBarViewModel _clipboardBarViewModel;
-  final SystemTrayService _systemTrayService;
   final WindowService _windowService;
   final HotkeyService _hotkeyService;
   const ClipboardView({
     super.key,
     required ClipboardBarViewModel clipboardBarViewModel,
-    required SystemTrayService systemTrayService,
     required WindowService windowService,
     required HotkeyService hotKeyService,
   }) : _clipboardBarViewModel = clipboardBarViewModel,
-       _systemTrayService = systemTrayService,
        _windowService = windowService,
        _hotkeyService = hotKeyService;
 
@@ -92,7 +88,10 @@ class _ClipboardViewState extends State<ClipboardView> {
                           ],
                         );
                       },
-                      child: clipBoardItem(itens[index]),
+                      child: ClipboardItem(
+                        item: itens[index],
+                        onClick: setClipBoard,
+                      ),
                     ),
                   );
                 },
@@ -104,32 +103,6 @@ class _ClipboardViewState extends State<ClipboardView> {
         },
       ),
     );
-  }
-
-  Widget clipBoardItem(ClipboardItemModel item) {
-    switch (item.type) {
-      case ClipboardContentType.text:
-        return ListTile(
-          title: Text(
-            item.text!,
-            maxLines: 5,
-            overflow: TextOverflow.ellipsis,
-            softWrap: true,
-          ),
-          onTap: () => setClipBoard(item),
-        );
-      case ClipboardContentType.image:
-        return ListTile(
-          title: Image(image: MemoryImage(item.image!)),
-          onTap: () => setClipBoard(item),
-        );
-
-      case ClipboardContentType.file:
-        return ListTile(
-          title: Text(item.text!),
-          onTap: () => setClipBoard(item),
-        );
-    }
   }
 
   void setClipBoard(ClipboardItemModel item) =>

@@ -10,6 +10,7 @@ import 'package:result_dart/result_dart.dart';
 class ClipboardService with ClipboardListener {
   final _clipboardController = StreamController<ClipboardItemModel>.broadcast();
   Stream<ClipboardItemModel> get clipboardStream => _clipboardController.stream;
+  bool _coolDown = false;
   ClipboardService() {
     _initClipboardWatcher();
   }
@@ -20,6 +21,7 @@ class ClipboardService with ClipboardListener {
   }
 
   AsyncResult<Unit> setClipBoard(ClipboardItemModel item) async {
+    _coolDown = true;
     try {
       switch (item.type) {
         case ClipboardContentType.text:
@@ -31,41 +33,40 @@ class ClipboardService with ClipboardListener {
       }
       return Success(unit);
     } catch (e) {
+      _coolDown = false;
       return Failure(WriteClipBoardError("Erro ao escrever no clipboard"));
     }
   }
 
   @override
   Future<void> onClipboardChanged() async {
+    if (_coolDown) {
+      _coolDown = false;
+      return;
+    }
+
     try {
       final String? text = await Pasteboard.text;
       final Uint8List? image = await Pasteboard.image;
       final List<String> files = await Pasteboard.files();
 
-      if (text != null) {
+      if (text != null && files.isEmpty) {
         _clipboardController.add(
-          ClipboardItemModel(
-            type: ClipboardContentType.text,
-            text: text,
-          ),
+          ClipboardItemModel(type: ClipboardContentType.text, text: text),
         );
-        //print("foi texto: $text");
-      } else if (image != null) {
+      } else if (image != null && files.isEmpty) {
         _clipboardController.add(
-          ClipboardItemModel(
-            type: ClipboardContentType.image,
-            image: image,
-          ),
+          ClipboardItemModel(type: ClipboardContentType.image, image: image),
         );
-        //print("foi imagem: $image");
       } else {
         _clipboardController.add(
           ClipboardItemModel(
             type: ClipboardContentType.file,
             filePath: files,
+            text: text,
+            image: image,
           ),
         );
-        //print("foi ficheiro: $files");
       }
     } catch (e) {
       print("error $e");

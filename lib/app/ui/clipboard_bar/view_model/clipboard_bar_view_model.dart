@@ -21,8 +21,7 @@ class ClipboardBarViewModel extends ChangeNotifier {
         return;
       }
 
-      if (_history.isEmpty ||
-          (_history.first != item && _lastManualSetClipBoard != item)) {
+      if (_history.isEmpty || (_history.first != item)) {
         _history.insert(0, item);
       }
 
