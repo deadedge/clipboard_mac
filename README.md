@@ -23,7 +23,8 @@ Este aplicativo monitora seu clipboard e guarda automaticamente tudo o que é co
 
 ## 🖼️ Capturas de Tela
 
-[Aqui você pode adicionar capturas de tela do seu aplicativo]
+<img width="379" alt="Captura de ecrã 2025-03-14, às 23 00 58" src="https://github.com/user-attachments/assets/c81f7026-350f-468f-8b10-1905bf2a9846" />
+
 
 ## 💻 Requisitos
 
