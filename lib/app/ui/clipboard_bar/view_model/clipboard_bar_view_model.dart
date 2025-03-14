@@ -8,10 +8,15 @@ class ClipboardBarViewModel extends ChangeNotifier {
   ClipboardItemModel? _lastManualSetClipBoard;
   ClipboardBarViewModel({required clipboardRepository}) {
     _clipboardRepository = clipboardRepository;
-    _initListeners();
+    _getInitialData();
   }
 
   List<ClipboardItemModel> get clipBoardItens => List.unmodifiable(_history);
+
+  Future<void> _getInitialData() async {
+    _history.addAll(await _clipboardRepository.getClipBoardItens());
+    _initListeners();
+  }
 
   void _initListeners() async {
     _clipboardRepository.clipBoardHistoryChanges.listen((

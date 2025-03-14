@@ -49,6 +49,7 @@ dependencies:
     path: ./packages/mouse_position
   collection: ^1.19.1
   localization: ^2.1.1
+  shared_preferences: ^2.5.2
   
 
 dependency_overrides:
