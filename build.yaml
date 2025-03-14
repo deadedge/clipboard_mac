@@ -1,0 +1,8 @@
+targets:
+  $default:
+    sources:
+      include:
+        - lib/app/domain/**
+      exclude:
+        - lib/app/**.freezed.dart
+        - lib/app/**.g.dart
