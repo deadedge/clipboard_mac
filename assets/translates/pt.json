@@ -1,0 +1,14 @@
+{
+  "window": {
+    "title": "Fast clipboard",
+    "close": "Fechar",
+    "noContent": "Não existe conteúdo no clipboard"
+  },
+  "tray": {
+    "open": "Abrir Menu",
+    "exit": "Sair"
+  },
+  "popupMenu": {
+    "delete": "Eliminar"
+  }
+}

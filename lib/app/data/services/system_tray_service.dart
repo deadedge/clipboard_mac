@@ -1,4 +1,5 @@
 import 'package:clipboard_mac/app/data/services/window_service.dart';
+import 'package:localization/localization.dart';
 import 'package:system_tray/system_tray.dart';
 
 class SystemTrayService {
@@ -13,24 +14,23 @@ class SystemTrayService {
   Menu get menu => _menuMain;
 
   Future<void> initialize() async {
-    await _systemTray.initSystemTray(iconPath: "assets/icon.png");
+    await _systemTray.initSystemTray(iconPath: "assets/images/icon.png");
     await _systemTray.setToolTip(
       "Now you can get your clipboard history easy and fast",
     );
 
     await _menuMain.buildFrom([
       MenuItemLabel(
-        label: "Open menu",
+        label: "tray.open".i18n(),
         onClicked: (menuItem) => _windowService.window.show(),
       ),
       MenuSeparator(),
       MenuItemLabel(
-        label: 'Exit',
+        label: "tray.exit".i18n(),
         onClicked: (menuItem) => _windowService.window.destroy(),
       ),
     ]);
     await _systemTray.setContextMenu(_menuMain);
-    // await _systemTray.popUpContextMenu();
 
     _systemTray.registerSystemTrayEventHandler((eventName) {
       if (eventName == kSystemTrayEventClick) {

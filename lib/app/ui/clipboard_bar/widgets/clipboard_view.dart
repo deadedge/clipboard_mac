@@ -4,6 +4,7 @@ import 'package:clipboard_mac/app/domain/models/clipboard_item_model.dart';
 import 'package:clipboard_mac/app/ui/clipboard_bar/view_model/clipboard_bar_view_model.dart';
 import 'package:clipboard_mac/app/ui/clipboard_bar/widgets/clipboard_item.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 class ClipboardView extends StatefulWidget {
   final ClipboardBarViewModel _clipboardBarViewModel;
@@ -37,7 +38,7 @@ class _ClipboardViewState extends State<ClipboardView> {
         title: Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            "Fast clipboard",
+            "window.title".i18n(),
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
         ),
@@ -54,7 +55,7 @@ class _ClipboardViewState extends State<ClipboardView> {
           final List<ClipboardItemModel> itens =
               widget._clipboardBarViewModel.clipBoardItens;
           return itens.isEmpty
-              ? Center(child: Text("Não existe nada no clipboard"))
+              ? Center(child: Text("window.noContent".i18n()))
               : ListView.separated(
                 itemBuilder: (itemContext, index) {
                   return MouseRegion(
@@ -77,7 +78,7 @@ class _ClipboardViewState extends State<ClipboardView> {
                                 spacing: 5,
                                 children: [
                                   Icon(Icons.delete),
-                                  Text("Eliminar"),
+                                  Text("popupMenu.delete".i18n()),
                                 ],
                               ),
                               onTap: () {

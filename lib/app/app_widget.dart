@@ -4,6 +4,8 @@ import 'package:clipboard_mac/app/data/services/window_service.dart';
 import 'package:clipboard_mac/app/ui/clipboard_bar/view_model/clipboard_bar_view_model.dart';
 import 'package:clipboard_mac/app/ui/clipboard_bar/widgets/clipboard_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
 
 class AppWidget extends StatefulWidget {
@@ -16,9 +18,22 @@ class AppWidget extends StatefulWidget {
 class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
+    LocalJsonLocalization.delegate.directories = ['assets/translates/'];
+
     return MaterialApp(
+      localizationsDelegates: [
+        // delegate from flutter_localization
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+
+        // delegate from localization package.
+        LocalJsonLocalization.delegate,
+      ],
+      supportedLocales: const [Locale('en', ''), Locale('pt', '')],
       debugShowCheckedModeBanner: false,
-      title: "Fast Clipboard",
+
+      title: "window.title".i18n(),
       home: ClipboardView(
         clipboardBarViewModel: context.read<ClipboardBarViewModel>(),
         windowService: context.read<WindowService>(),
