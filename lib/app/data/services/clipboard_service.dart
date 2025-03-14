@@ -50,6 +50,8 @@ class ClipboardService with ClipboardListener {
       final Uint8List? image = await Pasteboard.image;
       final List<String> files = await Pasteboard.files();
 
+      if(image == null && files.isEmpty) return;
+
       if (text != null && files.isEmpty) {
         _clipboardController.add(
           ClipboardItemModel(type: ClipboardContentType.text, text: text),
