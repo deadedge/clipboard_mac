@@ -28,7 +28,6 @@ List<SingleChildWidget> get providers {
       create:
           (context) => ClipboardBarViewModel(
             clipboardRepository: context.read<ClipboardRepository>(),
-            systemTrayService: context.read<SystemTrayService>(),
           ),
     ),
   ];

@@ -46,6 +46,7 @@ dependencies:
   hotkey_manager: ^0.2.3
   mouse_position:
     path: ./packages/mouse_position
+  collection: ^1.19.1
 
 dependency_overrides:
   uuid: ^4.0.0

@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ClipboardItemModel {
 
- ClipboardContentType get type; DateTime get copyAt; String? get id; String? get text;// Apply the converter to the field
+ ClipboardContentType get type; String? get text;// Apply the converter to the field
 @Uint8ListConverter() Uint8List? get image; List<String>? get filePath;
 /// Create a copy of ClipboardItemModel
 /// with the given fields replaced by the non-null parameter values.
@@ -30,16 +30,16 @@ $ClipboardItemModelCopyWith<ClipboardItemModel> get copyWith => _$ClipboardItemM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClipboardItemModel&&(identical(other.type, type) || other.type == type)&&(identical(other.copyAt, copyAt) || other.copyAt == copyAt)&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other.image, image)&&const DeepCollectionEquality().equals(other.filePath, filePath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClipboardItemModel&&(identical(other.type, type) || other.type == type)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other.image, image)&&const DeepCollectionEquality().equals(other.filePath, filePath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,copyAt,id,text,const DeepCollectionEquality().hash(image),const DeepCollectionEquality().hash(filePath));
+int get hashCode => Object.hash(runtimeType,type,text,const DeepCollectionEquality().hash(image),const DeepCollectionEquality().hash(filePath));
 
 @override
 String toString() {
-  return 'ClipboardItemModel(type: $type, copyAt: $copyAt, id: $id, text: $text, image: $image, filePath: $filePath)';
+  return 'ClipboardItemModel(type: $type, text: $text, image: $image, filePath: $filePath)';
 }
 
 
@@ -50,7 +50,7 @@ abstract mixin class $ClipboardItemModelCopyWith<$Res>  {
   factory $ClipboardItemModelCopyWith(ClipboardItemModel value, $Res Function(ClipboardItemModel) _then) = _$ClipboardItemModelCopyWithImpl;
 @useResult
 $Res call({
- ClipboardContentType type, DateTime copyAt, String? id, String? text,@Uint8ListConverter() Uint8List? image, List<String>? filePath
+ ClipboardContentType type, String? text,@Uint8ListConverter() Uint8List? image, List<String>? filePath
 });
 
 
@@ -67,12 +67,10 @@ class _$ClipboardItemModelCopyWithImpl<$Res>
 
 /// Create a copy of ClipboardItemModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? copyAt = null,Object? id = freezed,Object? text = freezed,Object? image = freezed,Object? filePath = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? text = freezed,Object? image = freezed,Object? filePath = freezed,}) {
   return _then(_self.copyWith(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as ClipboardContentType,copyAt: null == copyAt ? _self.copyAt : copyAt // ignore: cast_nullable_to_non_nullable
-as DateTime,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as ClipboardContentType,text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
 as Uint8List?,filePath: freezed == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as List<String>?,
@@ -86,12 +84,10 @@ as List<String>?,
 @JsonSerializable()
 
 class _ClipboardItemModel implements ClipboardItemModel {
-  const _ClipboardItemModel({required this.type, required this.copyAt, this.id, this.text, @Uint8ListConverter() this.image, final  List<String>? filePath}): _filePath = filePath;
+  const _ClipboardItemModel({required this.type, this.text, @Uint8ListConverter() this.image, final  List<String>? filePath}): _filePath = filePath;
   factory _ClipboardItemModel.fromJson(Map<String, dynamic> json) => _$ClipboardItemModelFromJson(json);
 
 @override final  ClipboardContentType type;
-@override final  DateTime copyAt;
-@override final  String? id;
 @override final  String? text;
 // Apply the converter to the field
 @override@Uint8ListConverter() final  Uint8List? image;
@@ -118,16 +114,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClipboardItemModel&&(identical(other.type, type) || other.type == type)&&(identical(other.copyAt, copyAt) || other.copyAt == copyAt)&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other.image, image)&&const DeepCollectionEquality().equals(other._filePath, _filePath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClipboardItemModel&&(identical(other.type, type) || other.type == type)&&(identical(other.text, text) || other.text == text)&&const DeepCollectionEquality().equals(other.image, image)&&const DeepCollectionEquality().equals(other._filePath, _filePath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,copyAt,id,text,const DeepCollectionEquality().hash(image),const DeepCollectionEquality().hash(_filePath));
+int get hashCode => Object.hash(runtimeType,type,text,const DeepCollectionEquality().hash(image),const DeepCollectionEquality().hash(_filePath));
 
 @override
 String toString() {
-  return 'ClipboardItemModel(type: $type, copyAt: $copyAt, id: $id, text: $text, image: $image, filePath: $filePath)';
+  return 'ClipboardItemModel(type: $type, text: $text, image: $image, filePath: $filePath)';
 }
 
 
@@ -138,7 +134,7 @@ abstract mixin class _$ClipboardItemModelCopyWith<$Res> implements $ClipboardIte
   factory _$ClipboardItemModelCopyWith(_ClipboardItemModel value, $Res Function(_ClipboardItemModel) _then) = __$ClipboardItemModelCopyWithImpl;
 @override @useResult
 $Res call({
- ClipboardContentType type, DateTime copyAt, String? id, String? text,@Uint8ListConverter() Uint8List? image, List<String>? filePath
+ ClipboardContentType type, String? text,@Uint8ListConverter() Uint8List? image, List<String>? filePath
 });
 
 
@@ -155,12 +151,10 @@ class __$ClipboardItemModelCopyWithImpl<$Res>
 
 /// Create a copy of ClipboardItemModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? copyAt = null,Object? id = freezed,Object? text = freezed,Object? image = freezed,Object? filePath = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? text = freezed,Object? image = freezed,Object? filePath = freezed,}) {
   return _then(_ClipboardItemModel(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as ClipboardContentType,copyAt: null == copyAt ? _self.copyAt : copyAt // ignore: cast_nullable_to_non_nullable
-as DateTime,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as ClipboardContentType,text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
 as Uint8List?,filePath: freezed == filePath ? _self._filePath : filePath // ignore: cast_nullable_to_non_nullable
 as List<String>?,

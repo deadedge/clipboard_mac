@@ -12,25 +12,4 @@ class MousePositionService {
       return {'x': 0.0, 'y': 0.0};
     }
   }
-
-  /*   _windowService.window
-  static Future<bool> positionWindowAtMouseCursor() async {
-    try {
-      // Verificar se o método está disponível
-      await waitForMethodAvailability();
-      
-      // Obter posição do mouse
-      final position = await getMousePosition();
-      
-      // Posicionar a janela
-      await windowPlatform.invokeMethod('positionWindow', {
-        'x': position['x'],
-        'y': position['y'],
-      });
-      return true;
-    } on PlatformException catch (e) {
-      print("Falha ao posicionar janela: ${e.message}");
-      return false;
-    }
-  } */
 }

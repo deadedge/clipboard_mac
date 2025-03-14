@@ -1,6 +1,5 @@
 import 'package:clipboard_mac/app/data/services/window_service.dart';
 import 'package:system_tray/system_tray.dart';
-import 'package:window_manager/window_manager.dart';
 
 class SystemTrayService {
   final SystemTray _systemTray = SystemTray();

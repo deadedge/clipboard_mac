@@ -8,6 +8,7 @@ class HotkeyService {
   HotkeyService({required windowsService}) : _windowService = windowsService;
 
   init() async {
+    await hotKeyManager.unregisterAll();
     await hotKeyManager.register(
       HotKey(
         key: PhysicalKeyboardKey.keyV,

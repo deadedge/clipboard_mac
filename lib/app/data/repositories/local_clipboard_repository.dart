@@ -41,6 +41,11 @@ class LocalClipboardRepository implements ClipboardRepository {
   }
 
   @override
+  AsyncResult<Unit> setClipBoard(ClipboardItemModel content) async {
+    return await _clipboardService.setClipBoard(content);
+  }
+
+  @override
   void dispose() {
     _historyController.close();
     _clipboardService.dispose();

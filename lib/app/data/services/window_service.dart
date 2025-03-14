@@ -11,7 +11,7 @@ class WindowService with WindowListener {
 
   init() async {
     WindowOptions windowOptions = WindowOptions(
-      size: Size(400, 500),
+      size: Size(300, 350),
       minimumSize: Size(300, 300),
       title: 'Fast Clipboard',
       center: false,
