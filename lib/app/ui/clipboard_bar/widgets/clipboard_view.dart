@@ -34,7 +34,7 @@ class _ClipboardViewState extends State<ClipboardView> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext screenContext) {
     return Scaffold(
       backgroundColor: Color(0xFF2C2C2C),
       appBar: AppBar(
@@ -60,30 +60,41 @@ class _ClipboardViewState extends State<ClipboardView> {
           return itens.isEmpty
               ? Center(child: Text("Não existe nada no clipboard"))
               : ListView.separated(
-                itemBuilder: (context, index) {
-                  switch (itens[index].type) {
-                    case ClipboardContentType.text:
-                      return ListTile(
-                        title: Text(
-                          itens[index].text!,
-                          maxLines: 5,
-                          overflow: TextOverflow.ellipsis,
-                          softWrap: true,
-                        ),
-                        onTap: () => setClipBoard(itens[index]),
-                      );
-                    case ClipboardContentType.image:
-                      return ListTile(
-                        title: Image(image: MemoryImage(itens[index].image!)),
-                        onTap: () => setClipBoard(itens[index]),
-                      );
-
-                    case ClipboardContentType.file:
-                      return ListTile(
-                        title: Text(itens[index].text!),
-                        onTap: () => setClipBoard(itens[index]),
-                      );
-                  }
+                itemBuilder: (itemContext, index) {
+                  return MouseRegion(
+                    child: InkWell(
+                      onSecondaryTapDown: (details) {
+                        showMenu(
+                          context: itemContext,
+                          position: RelativeRect.fromRect(
+                            Rect.fromLTWH(
+                              details.globalPosition.dx,
+                              details.globalPosition.dy,
+                              0,
+                              0,
+                            ),
+                            Offset.zero & MediaQuery.of(context).size,
+                          ),
+                          items: [
+                            PopupMenuItem(
+                              child: Row(
+                                spacing: 5,
+                                children: [
+                                  Icon(Icons.delete),
+                                  Text("Eliminar"),
+                                ],
+                              ),
+                              onTap: () {
+                                widget._clipboardBarViewModel
+                                    .removeFromClipBoard(itens[index]);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                      child: clipBoardItem(itens[index]),
+                    ),
+                  );
                 },
                 separatorBuilder:
                     (context, index) =>
@@ -93,6 +104,32 @@ class _ClipboardViewState extends State<ClipboardView> {
         },
       ),
     );
+  }
+
+  Widget clipBoardItem(ClipboardItemModel item) {
+    switch (item.type) {
+      case ClipboardContentType.text:
+        return ListTile(
+          title: Text(
+            item.text!,
+            maxLines: 5,
+            overflow: TextOverflow.ellipsis,
+            softWrap: true,
+          ),
+          onTap: () => setClipBoard(item),
+        );
+      case ClipboardContentType.image:
+        return ListTile(
+          title: Image(image: MemoryImage(item.image!)),
+          onTap: () => setClipBoard(item),
+        );
+
+      case ClipboardContentType.file:
+        return ListTile(
+          title: Text(item.text!),
+          onTap: () => setClipBoard(item),
+        );
+    }
   }
 
   void setClipBoard(ClipboardItemModel item) =>

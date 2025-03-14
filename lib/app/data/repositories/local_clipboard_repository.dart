@@ -23,9 +23,8 @@ class LocalClipboardRepository implements ClipboardRepository {
       _historyController.stream;
 
   @override
-  AsyncResult<Unit> removeFromClipBoard(ClipboardItemModel content) {
-    // TODO: implement removeFromClipBoard
-    throw UnimplementedError();
+  void removeFromClipBoard(ClipboardItemModel content) {
+    _history.remove(content);
   }
 
   @override

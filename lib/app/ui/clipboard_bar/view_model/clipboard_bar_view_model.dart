@@ -34,4 +34,12 @@ class ClipboardBarViewModel extends ChangeNotifier {
     _clipboardRepository.setClipBoard(item);
     _lastManualSetClipBoard = item;
   }
+
+  Future<void> removeFromClipBoard(ClipboardItemModel item) async {
+    _clipboardRepository.removeFromClipBoard(item);
+    _history.remove(item);
+    _lastManualSetClipBoard =
+        _lastManualSetClipBoard == item ? null : _lastManualSetClipBoard;
+    notifyListeners();
+  }
 }

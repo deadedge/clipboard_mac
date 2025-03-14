@@ -3,8 +3,8 @@ import 'package:result_dart/result_dart.dart';
 
 abstract class ClipboardRepository {
   AsyncResult<List<ClipboardItemModel>> getClipBoardItens();
-  AsyncResult<Unit> removeFromClipBoard(ClipboardItemModel content);
   AsyncResult<Unit> setClipBoard(ClipboardItemModel content);
+  void removeFromClipBoard(ClipboardItemModel content);
 
   Stream<ClipboardItemModel> get clipBoardHistoryChanges;
   List<ClipboardItemModel> get clipBoardHistory;
