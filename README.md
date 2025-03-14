@@ -19,6 +19,9 @@ Este aplicativo monitora seu clipboard e guarda automaticamente tudo o que é co
 - **Gerenciamento de registros**:
   - Possibilidade de eliminar itens específicos do histórico
   - Interface intuitiva para gerenciar seu histórico de clipboard
+- **Multilíngue**:
+  - Suporte completo para múltiplos idiomas
+  - Atualmente disponível em Português (PT) e Inglês (EN)
 - **Acesso rápido**: Use `Ctrl + V` para abrir o aplicativo
 
 ## 🖼️ Capturas de Tela
