@@ -50,7 +50,8 @@ dependencies:
   collection: ^1.19.1
   localization: ^2.1.1
   shared_preferences: ^2.5.2
-  
+  screen_retriever: ^0.2.0
+
 
 dependency_overrides:
   uuid: ^4.0.0

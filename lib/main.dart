@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:clipboard_mac/app/app_widget.dart';
 import 'package:clipboard_mac/app/config/dependencies.dart';
 import 'package:clipboard_mac/app/data/services/system_tray_service.dart';
