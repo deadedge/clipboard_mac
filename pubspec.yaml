@@ -45,8 +45,6 @@ dependencies:
   json_annotation: ^4.9.0
   provider: ^6.1.2
   hotkey_manager: ^0.2.3
-  mouse_position:
-    path: ./packages/mouse_position
   collection: ^1.19.1
   localization: ^2.1.1
   shared_preferences: ^2.5.2
