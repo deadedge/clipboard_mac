@@ -6,7 +6,7 @@
   },
   "tray": {
     "open": "Open Menu",
-    "saveContent": "Save last 20 copied content",
+    "saveContent": "Save copied content",
     "exit": "Exit"
   },
   "popupMenu": {
