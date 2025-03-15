@@ -16,5 +16,9 @@
   "appBarActions": {
     "delete": "Eliminar todos os registos",
     "close": "Fechar"
+  },
+  "clipboardItem": {
+    "file": "Ficheiro",
+    "files": "ficheiros"
   }
 }

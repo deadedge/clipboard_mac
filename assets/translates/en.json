@@ -16,5 +16,9 @@
   "appBarActions": {
     "delete": "Delete all records",
     "close": "Close"
+  },
+  "clipboardItem": {
+    "file": "File",
+    "files": "files"
   }
 }
