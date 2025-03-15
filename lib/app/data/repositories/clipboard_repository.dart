@@ -5,6 +5,7 @@ abstract class ClipboardRepository {
   Future<List<ClipboardItemModel>> getClipBoardItens();
   AsyncResult<Unit> setClipBoard(ClipboardItemModel content);
   void removeFromClipBoard(ClipboardItemModel content);
+  void clearClipBoard();
 
   Stream<ClipboardItemModel> get clipBoardHistoryChanges;
   List<ClipboardItemModel> get clipBoardHistory;

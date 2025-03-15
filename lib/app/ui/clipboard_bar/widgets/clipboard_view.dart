@@ -44,6 +44,13 @@ class _ClipboardViewState extends State<ClipboardView> {
         ),
         actions: [
           IconButton(
+            tooltip: "appBarActions.delete".i18n(),
+            onPressed: () => widget._clipboardBarViewModel.clearClipBoard(),
+            icon: Icon(Icons.delete, color: Colors.red.withValues(alpha: 120)),
+          ),
+          IconButton(
+            tooltip: "appBarActions.close".i18n(),
+
             onPressed: () => widget._windowService.window.hide(),
             icon: Icon(Icons.close, color: Colors.white.withValues(alpha: 120)),
           ),

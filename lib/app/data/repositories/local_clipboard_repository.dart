@@ -34,8 +34,12 @@ class LocalClipboardRepository implements ClipboardRepository {
       _historyController.stream;
 
   @override
-  void removeFromClipBoard(ClipboardItemModel content) {
+  void removeFromClipBoard(ClipboardItemModel content) async {
     _history.remove(content);
+    final bool configSaved = (await _localStorageService.getBool(configKey))!;
+    if (configSaved) {
+      await _localStorageService.saveString(clipBoardKey, jsonEncode(_history));
+    }
   }
 
   @override
@@ -67,6 +71,15 @@ class LocalClipboardRepository implements ClipboardRepository {
   @override
   AsyncResult<Unit> setClipBoard(ClipboardItemModel content) async {
     return await _clipboardService.setClipBoard(content);
+  }
+
+  @override
+  void clearClipBoard() async {
+    _history.clear();
+    final bool configSaved = (await _localStorageService.getBool(configKey))!;
+    if (configSaved) {
+      await _localStorageService.saveString(clipBoardKey, jsonEncode(_history));
+    }
   }
 
   @override

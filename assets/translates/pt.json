@@ -7,9 +7,14 @@
   "tray": {
     "open": "Abrir Menu",
     "saveContent": "Guardar os conteúdos copiados",
-    "exit": "Sair"
+    "exit": "Sair",
+    "deleteAll": "Eliminar todos os conteúdos"
   },
   "popupMenu": {
     "delete": "Eliminar"
+  },
+  "appBarActions": {
+    "delete": "Eliminar todos os registos",
+    "close": "Fechar"
   }
 }

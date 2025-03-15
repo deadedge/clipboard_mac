@@ -7,9 +7,14 @@
   "tray": {
     "open": "Open Menu",
     "saveContent": "Save copied content",
-    "exit": "Exit"
+    "exit": "Exit",
+    "deleteAll": "Delete all content"
   },
   "popupMenu": {
     "delete": "Delete"
+  },
+  "appBarActions": {
+    "delete": "Delete all records",
+    "close": "Close"
   }
 }

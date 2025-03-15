@@ -38,6 +38,7 @@ class SystemTrayService {
         label: "tray.open".i18n(),
         onClicked: (menuItem) => _windowService.window.show(),
       ),
+
       MenuItemCheckbox(
         label: "tray.saveContent".i18n(),
         name: "tray.saveContent".i18n(),
@@ -49,9 +50,10 @@ class SystemTrayService {
           _saveContent = !_saveContent;
           checkbox?.setCheck(_saveContent);
           await _localStorageService.saveBool(configKey, _saveContent);
-          if(!_saveContent) await _localStorageService.delete("clipBoard");
+          if (!_saveContent) await _localStorageService.delete("clipBoard");
         },
       ),
+
       MenuSeparator(),
       MenuItemLabel(
         label: "tray.exit".i18n(),
