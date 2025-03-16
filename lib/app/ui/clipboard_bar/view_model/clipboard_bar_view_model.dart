@@ -53,4 +53,19 @@ class ClipboardBarViewModel extends ChangeNotifier {
     _lastManualSetClipBoard = null;
     notifyListeners();
   }
+
+  void clearSelectedItens(List<int> itensToDelete) {
+    final List<ClipboardItemModel> _itensToDelete = [];
+    for (var i = 0; i < _history.length; i++) {
+      if (itensToDelete.contains(i)) {
+        _itensToDelete.add(_history[i]);
+        _history.removeAt(i);
+      }
+    }
+
+    _clipboardRepository.clearSelectedItens(_itensToDelete);
+
+    _lastManualSetClipBoard = null;
+    notifyListeners();
+  }
 }

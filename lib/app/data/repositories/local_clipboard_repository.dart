@@ -83,6 +83,15 @@ class LocalClipboardRepository implements ClipboardRepository {
   }
 
   @override
+  void clearSelectedItens(List<ClipboardItemModel> itensToDelete) async {
+    _history.removeWhere((element) => itensToDelete.contains(element));
+    final bool configSaved = (await _localStorageService.getBool(configKey))!;
+    if (configSaved) {
+      await _localStorageService.saveString(clipBoardKey, jsonEncode(_history));
+    }
+  }
+
+  @override
   void dispose() {
     _historyController.close();
     _clipboardService.dispose();

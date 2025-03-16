@@ -6,6 +6,7 @@ abstract class ClipboardRepository {
   AsyncResult<Unit> setClipBoard(ClipboardItemModel content);
   void removeFromClipBoard(ClipboardItemModel content);
   void clearClipBoard();
+  void clearSelectedItens(List<ClipboardItemModel> itensToDelete);
 
   Stream<ClipboardItemModel> get clipBoardHistoryChanges;
   List<ClipboardItemModel> get clipBoardHistory;

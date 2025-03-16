@@ -3,6 +3,7 @@ import 'package:clipboard_mac/app/data/services/window_service.dart';
 import 'package:clipboard_mac/app/domain/models/clipboard_item_model.dart';
 import 'package:clipboard_mac/app/ui/clipboard_bar/view_model/clipboard_bar_view_model.dart';
 import 'package:clipboard_mac/app/ui/clipboard_bar/widgets/clipboard_item.dart';
+import 'package:clipboard_mac/app/ui/clipboard_bar/widgets/selectable_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 
@@ -24,6 +25,9 @@ class ClipboardView extends StatefulWidget {
 }
 
 class _ClipboardViewState extends State<ClipboardView> {
+  final List<int> _itensToDelete = [];
+  bool forceDeactive = false;
+
   @override
   void initState() {
     super.initState();
@@ -43,14 +47,37 @@ class _ClipboardViewState extends State<ClipboardView> {
           ),
         ),
         actions: [
-          IconButton(
-            tooltip: "appBarActions.delete".i18n(),
-            onPressed: () => widget._clipboardBarViewModel.clearClipBoard(),
-            icon: Icon(Icons.delete, color: Colors.red.withValues(alpha: 120)),
-          ),
+          if (_itensToDelete.isEmpty) ...[
+            IconButton(
+              tooltip: "appBarActions.delete".i18n(),
+              onPressed: () => widget._clipboardBarViewModel.clearClipBoard(),
+              icon: Icon(
+                Icons.delete,
+                color: Colors.red.withValues(alpha: 120),
+              ),
+            ),
+          ] else ...[
+            IconButton(
+              tooltip: "appBarActions.deleteNumber".i18n([
+                _itensToDelete.length.toString(),
+              ]),
+              onPressed: () {
+                widget._clipboardBarViewModel.clearSelectedItens(
+                  _itensToDelete,
+                );
+                setState(() {
+                  forceDeactive = true;
+                  _itensToDelete.clear();
+                });
+              },
+              icon: Icon(
+                Icons.delete,
+                color: Colors.red.withValues(alpha: 120),
+              ),
+            ),
+          ],
           IconButton(
             tooltip: "appBarActions.close".i18n(),
-
             onPressed: () => widget._windowService.window.hide(),
             icon: Icon(Icons.close, color: Colors.white.withValues(alpha: 120)),
           ),
@@ -63,7 +90,18 @@ class _ClipboardViewState extends State<ClipboardView> {
               widget._clipboardBarViewModel.clipBoardItens;
           return itens.isEmpty
               ? Center(child: Text("window.noContent".i18n()))
-              : ListView.separated(
+              : SelectableListWidget(
+                deactive: forceDeactive,
+                onDeactive: () => forceDeactive = false,
+                checkBoxColor: Colors.red.withValues(alpha: 120),
+                separator: true,
+                items: itens,
+                onItemsSelected: (selecteds) {
+                  setState(() {
+                    _itensToDelete.clear();
+                    _itensToDelete.addAll(selecteds);
+                  });
+                },
                 itemBuilder: (itemContext, index) {
                   return MouseRegion(
                     child: InkWell(
@@ -103,10 +141,6 @@ class _ClipboardViewState extends State<ClipboardView> {
                     ),
                   );
                 },
-                separatorBuilder:
-                    (context, index) =>
-                        Divider(height: 1, indent: 16, endIndent: 16),
-                itemCount: itens.length,
               );
         },
       ),

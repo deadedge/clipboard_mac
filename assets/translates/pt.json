@@ -15,6 +15,7 @@
   },
   "appBarActions": {
     "delete": "Eliminar todos os registos",
+    "deleteNumber": "Eliminar %s registos",
     "close": "Fechar"
   },
   "clipboardItem": {

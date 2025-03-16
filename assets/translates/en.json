@@ -15,6 +15,7 @@
   },
   "appBarActions": {
     "delete": "Delete all records",
+    "deleteNumber": "Delete %s records",
     "close": "Close"
   },
   "clipboardItem": {
