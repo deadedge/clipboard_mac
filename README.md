@@ -22,7 +22,7 @@ Um aplicativo Flutter para macOS que gerencia e armazena todo o conteúdo do seu
  
  <img width="379" alt="Captura de ecrã 2025-03-14, às 23 00 58" src="https://github.com/user-attachments/assets/c81f7026-350f-468f-8b10-1905bf2a9846" />
  <img width="311" alt="Captura de ecrã 2025-03-16, às 01 51 02" src="https://github.com/user-attachments/assets/ce037f89-87fa-4b20-be9f-17fa5f400590" />
-![image](https://github.com/user-attachments/assets/0c74e1dc-651a-4207-9b42-ac0a586ca8a9)
+ <img width="311" alt="Captura de ecrã 2025-03-16, às 01 51 03" src="https://github.com/user-attachments/assets/21949434-3e62-4f05-85c9-2a80349f5b1b" />
 
  
  ## 💻 Requisitos
